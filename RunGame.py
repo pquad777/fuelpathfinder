@@ -21,7 +21,7 @@ ORANGE = (255, 165, 0)
 
 from fuelpathfinder import FuelPathFinder
 
-class Map:
+class Map: #맵 생성 규칙(첫 줄에 연료량, 벽 부수기 개수, 주유소 개수 지정. 두번째 줄부터 맵 나타냄. 가로는 20 세로 15 제한)
     def __init__(self, level=1):
         self.level = level
         self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -59,17 +59,16 @@ class Game:
         self.current_level = 1
         self.font = pygame.font.SysFont("malgungothic", 18)
         self.big_font = pygame.font.SysFont("malgungothic", 48, bold=True)
-        self.load_level(self.current_level)
         self.SIDE_UI_WIDTH = 300
-        self.SCREEN_WIDTH = TILE_SIZE * self.map.width + self.SIDE_UI_WIDTH
-        self.SCREEN_HEIGHT = TILE_SIZE * self.map.height
-        self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
+        self.load_level(self.current_level)
+
         pygame.display.set_caption("A* Fuel Puzzle")
         self.load_images()
         self.clock = pygame.time.Clock()
         self.running = True
         self.blink_counter = 0
         self.blink_pos = None
+
 
 
     def load_level(self, level):
@@ -82,6 +81,10 @@ class Game:
         self.car_timer = 0
         self.blink_counter = 0
         self.blink_pos = None
+
+        self.SCREEN_WIDTH = TILE_SIZE * self.map.width + self.SIDE_UI_WIDTH
+        self.SCREEN_HEIGHT = TILE_SIZE * self.map.height
+        self.screen = pygame.display.set_mode((self.SCREEN_WIDTH, self.SCREEN_HEIGHT))
 
     def load_image(self, path):
         image = pygame.image.load(path).convert_alpha()
