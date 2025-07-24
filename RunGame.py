@@ -57,8 +57,8 @@ class Game:
     def __init__(self):
         pygame.init()
         self.current_level = 1
-        self.font = pygame.font.SysFont("malgungothic", 18)
-        self.big_font = pygame.font.SysFont("malgungothic", 48, bold=True)
+        self.font = pygame.font.Font("fonts/Jua-Regular.ttf", 18)
+        self.big_font = pygame.font.Font("fonts/Jua-Regular.ttf", 48)
         self.SIDE_UI_WIDTH = 300
         self.load_level(self.current_level)
 
